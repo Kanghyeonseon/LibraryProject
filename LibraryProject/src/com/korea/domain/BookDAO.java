@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import com.korea.dto.BookDTO;
+
 //BookTable과 연결되어 도서를 조회, 삽입, 수정, 삭제하는데 사용한다.
 //DB연동코드가 기본으로 setup이 되어있어야한다.
 public class BookDAO {
@@ -20,7 +22,7 @@ public class BookDAO {
 	private Connection conn = null;
 	
 	//생성자 : 객체 생성시 기본 DBMS연결
-	BookDAO() {
+	public BookDAO() {
 		try {
 			Class.forName(driver);
 			System.out.println("Driver Loading Success");
@@ -33,7 +35,7 @@ public class BookDAO {
 	
 	//도서정보조회/삽입/수정/삭제
 	void Select() {}
-	void Insert(BookDTO dto) {
+	public void Insert(BookDTO dto) {
 		try {
 			//컨트롤러로부터 받은 도서정보를 Book_Tbl에 저장
 			pstmt = conn.prepareStatement("insert into booktbl values(?,?)");

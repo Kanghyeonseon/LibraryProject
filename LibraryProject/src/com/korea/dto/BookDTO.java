@@ -1,4 +1,4 @@
-package com.korea.domain;
+package com.korea.dto;
 //도서관련정보를 담는 단위로만 쓴다.
 public class BookDTO {
 	private String BookCode;

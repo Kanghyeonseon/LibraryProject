@@ -3,7 +3,7 @@ package com.korea.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.korea.domain.BookDTO;
+import com.korea.dto.BookDTO;
 
 public class FrontController {
 //각각의 Controller를 객체형으로 가진다.

@@ -1,6 +1,6 @@
 package com.korea.controller;
 
-import com.korea.domain.BookDTO;
+import com.korea.dto.BookDTO;
 
 public interface SubController {
 	//실행하기 함수

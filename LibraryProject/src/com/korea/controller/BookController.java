@@ -1,6 +1,6 @@
 package com.korea.controller;
 
-import com.korea.domain.BookDTO;
+import com.korea.dto.BookDTO;
 
 public class BookController implements SubController{
 	//사실 BookController 말고도 다른걸 다 해줘야하는데 

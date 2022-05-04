@@ -3,7 +3,7 @@ package com.korea.view;
 import java.util.Scanner;
 
 import com.korea.controller.FrontController;
-import com.korea.domain.BookDTO;
+import com.korea.dto.BookDTO;
 
 public class Viewer {
 	
