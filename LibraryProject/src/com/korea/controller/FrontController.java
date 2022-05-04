@@ -20,7 +20,8 @@ public class FrontController {
 	}
 	
 	void Init() {
-		map.put("Book", new BookController());
+		map.put("BOOK", new BookController());
+		map.put("AUTH", new AuthController());
 		//SubController로 Value부분을 지정, 
 		//BookController를 SubController타입으로바꾸는것이므로 업캐스팅
 		//BookController가 객체로 지정이 되어있다.
@@ -29,7 +30,7 @@ public class FrontController {
 //		map.put("Member", new MemberController());
 	}
 	public void SubConExecute(String menu, int num, BookDTO dto) {
-		if(menu.equals("BOOk")) {
+		if(menu.equals("BOOK")) {
 			//도서관련요청
 			SubController sub = map.get("BOOK");
 			//BOOK키워드를가지는 객체를만들고, 			

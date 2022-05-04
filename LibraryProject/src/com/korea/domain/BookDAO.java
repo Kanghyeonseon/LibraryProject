@@ -38,7 +38,7 @@ public class BookDAO {
 	public void Insert(BookDTO dto) {
 		try {
 			//컨트롤러로부터 받은 도서정보를 Book_Tbl에 저장
-			pstmt = conn.prepareStatement("insert into booktbl values(?,?)");
+			pstmt = conn.prepareStatement("insert into book_tbl values(?,?)");
 			pstmt.setString(1, dto.getBookCode());
 			pstmt.setString(2, dto.getBookName());
 			int result = pstmt.executeUpdate();
