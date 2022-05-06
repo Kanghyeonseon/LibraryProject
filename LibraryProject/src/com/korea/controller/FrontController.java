@@ -1,54 +1,40 @@
 package com.korea.controller;
 
 import java.util.HashMap;
+
 import java.util.Map;
 
-import com.korea.dto.BookDTO;
+import com.korea.dto.*;
 
 public class FrontController {
-//각각의 Controller를 객체형으로 가진다.
-//SubController를 담는 컬렉션 지정
+	//서브컨트롤러 저장용	
+	Map<String, SubController> map = new HashMap();
 	
-	
-	
-	//맵에 서브컨트롤러를 등록시키는 작업(컬렉션)
-	Map<String, SubController> map = new HashMap<>();
-	//상위인터페이스를 제너릭타입으로 돌려준다.
+	//각각의 SubController를 받을 수 있는 맵이다.	
 	public FrontController() {
 		Init();
-		//FrontController를 실행했을 때 Init이라는 메소드를 항상 실행하도록한다.
+		//Map에서 Init에 지정된대로 서브컨트롤러가 추가된다.		
 	}
-	
-	void Init() {
+	//등록 할 서비스 지정
+	private void Init() {
 		map.put("BOOK", new BookController());
 		map.put("AUTH", new AuthController());
-		//SubController로 Value부분을 지정, 
-		//BookController를 SubController타입으로바꾸는것이므로 업캐스팅
-		//BookController가 객체로 지정이 되어있다.
-//		map.put("AUTH", new AuthenticationController());
-//		map.put("EMPLOYEE", new EmployeeController());
-//		map.put("Member", new MemberController());
-	}
-	public void SubConExecute(String menu, int num, BookDTO dto) {
+
+	}	
+	//MAP에 있는 서브컨트롤러를 꺼내어 해당 컨트롤러를 실행하는 함수
+	public boolean SubControllerEX(String menu, int num, DTO dto) {
+		SubController tmp;
 		if(menu.equals("BOOK")) {
-			//도서관련요청
-			SubController sub = map.get("BOOK");
-			//BOOK키워드를가지는 객체를만들고, 			
-			//BookController를 map에서 꺼내욤. 
-			
-			sub.execute(num, dto); //도서관련 dto
-			//입력된 num에 따라 도서 
-			//조회, 삽입, 수정, 삭제를 할것이다.
-			//요청번호, 도서정보를 BookController에 execute로 전달한다.
-			
-			
+			tmp = map.get("BOOK"); //BOOKController에 꺼내서 tmp에 연결
+			return tmp.execute(num, dto); //execute의 반환형이 불린형이다.
+			//실행된 것을 View로 전달하는 역할을 한다.
+			//num : 1->조회, 2->삽입 3->수정 4->삭제
 		} else if(menu.equals("AUTH")) {
-			//로그인, 로그아웃 요청
-		} else if(menu.equals("MEMBER")) {
-			
+			tmp=map.get("AUTH"); //AuthController꺼내서 tmp에 꺼낸다.
+			return tmp.execute(num, dto); //직원로그인인지 회원로그인인지 확인한다.
+			//서브컨트롤러 execute를 실행하고 결과(true/false)를 view로 전달한다.
+			//num : 1->회원로그인 2->직원로그인
 		}
+		return false;
 	}
-	
-	
-	
 }

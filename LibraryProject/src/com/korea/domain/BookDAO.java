@@ -7,56 +7,41 @@ import java.sql.ResultSet;
 
 import com.korea.dto.BookDTO;
 
-//BookTable과 연결되어 도서를 조회, 삽입, 수정, 삭제하는데 사용한다.
-//DB연동코드가 기본으로 setup이 되어있어야한다.
-public class BookDAO {
-	//연결정보	
-	private String driver = "com.mysql.cj.jdbc.Driver";
-	private String url = "jdbc:mysql://localhost:3306/librarydb";
-	private String id = "root";
-	private String pw = "1234";
+public class BookDAO extends DAO{
 	
-	//연결객체정보
-	private PreparedStatement pstmt = null;
-	private ResultSet rs = null;
-	private Connection conn = null;
+
 	
-	//생성자 : 객체 생성시 기본 DBMS연결
-	public BookDAO() {
-		try {
-			Class.forName(driver);
-			System.out.println("Driver Loading Success");
-			conn = DriverManager.getConnection(url,id,pw);
-			System.out.println("DB Connected.....");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	public BookDAO () {}
 	
-	//도서정보조회/삽입/수정/삭제
-	void Select() {}
-	public void Insert(BookDTO dto) {
-		try {
-			//컨트롤러로부터 받은 도서정보를 Book_Tbl에 저장
-			pstmt = conn.prepareStatement("insert into book_tbl values(?,?)");
-			pstmt.setString(1, dto.getBookCode());
-			pstmt.setString(2, dto.getBookName());
-			int result = pstmt.executeUpdate();
-			if(result!=0) {
-				System.out.println("도서등록완료!");
-			} else {
-				System.out.println("도서등록실패");
+		//도서정보 조회(num : 1)
+		public void Select() {}
+		//도서정보 추가(num : 2)
+		public boolean Insert(BookDTO dto) {
+				//전달이 잘 됐는지 boolean형으로 알려준다.
+			try {
+				pstmt = conn.prepareStatement("insert into book_tbl values(?,?,?,?,?)");
+				pstmt.setString(1, dto.getBook_Code());
+				pstmt.setString(2, dto.getBook_Name());
+				pstmt.setString(3, dto.getBook_Author());
+				pstmt.setString(4, dto.getPublisher());
+				pstmt.setInt(5, dto.getIsRental());
+				int result = pstmt.executeUpdate();				
+				if(result!=0) { return true; }
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}  finally {
+				try {pstmt.close(); }catch(Exception e) { e.printStackTrace(); }
 			}			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			try { pstmt.close(); } catch(Exception e) {e.printStackTrace();}
+			return false;
 		}
+		//도서정보 수정(num : 3)
+		public void Update() {}
+		//도서정보 삭제(num : 4)
+		public void Delete() {}
+		
 	}
-	void Update() {}
-	void Delete() {}
-	
-	
-	
-}
+	//연결객체 생성하는 작업까지만 한다. (finally이하 구문을 지워준다.)
+
+
+

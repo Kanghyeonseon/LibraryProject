@@ -1,11 +1,8 @@
 package com.korea.controller;
 
-import com.korea.dto.BookDTO;
+import com.korea.dto.DTO;
 
 public interface SubController {
-	//실행하기 함수
-	void execute(int num, BookDTO dto);
-	//DTO : 데이터를 담는 단위
-	//DTO가 도서정보일수도 인증정보일수도... 있는데 BookDTO로 정했다.
-	//num : 서비스 종류(조회, 삽입, 수정, 삭제);
+	boolean execute(int num, DTO dto);
+	//BookDTO자리에 DTO를 넣어주는 작업을했다. 업캐스팅. 상위클래스인 DTO 
 }

@@ -4,16 +4,22 @@ import com.korea.domain.BookDAO;
 import com.korea.dto.BookDTO;
 
 public class BookService {
-	//dao와 연결
+	//멤버
 	BookDAO dao = new BookDAO();
 	
-	//Book 조회, 삽입, 수정, 삭제
-	void Select() {}
-	public void Insert(BookDTO dto) {
-		dao.Insert(dto); 
-		//이렇게 불러오기위해서 Insert를 public으로바꿨다.
+	//조회
+	
+	//추가
+	public boolean Insert(BookDTO dto) {
+		return dao.Insert(dto);
+		//전달받은 dto를 dao로 넘기고 반환되는 값을 Controller로 true/false로 연결
 		
 	}
-	void Update() {}
-	void Delete() {}
+	
+	 
+	//수정
+	
+	//삭제
+	
+	
 }
