@@ -3,6 +3,7 @@ package com.korea.main;
 
 import com.korea.controller.FrontController;
 import com.korea.dto.BookDTO;
+import com.korea.view.GUIViewer;
 import com.korea.view.Viewer;
 
 public class Main {
@@ -27,7 +28,12 @@ public class Main {
 		
 		
 		//4. Viewer-LoginController
-		view1.LoginMenu();
+//		view1.LoginMenu();
+//		
+//		GUIVIewer view2 = new GUIViewer();
+		new GUIViewer();
+		
+		
 		
 		
 	}
