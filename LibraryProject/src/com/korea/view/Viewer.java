@@ -3,6 +3,7 @@ package com.korea.view;
 import java.util.Scanner;
 
 import com.korea.controller.FrontController;
+import com.korea.dto.AuthDTO;
 import com.korea.dto.BookDTO;
 
 
@@ -18,17 +19,36 @@ public class Viewer {
 	public void LoginMenu() {		
 		while(true) {
 		System.out.println("----------로그인----------");
-		System.out.println("1. 직원로그인");
-		System.out.println("2. 회원로그인");
+		System.out.println("1. 회원로그인");
+		System.out.println("2. 직원로그인");
 		System.out.println("3. 종료");
 		System.out.println("----------로그인----------");
 		System.out.print("번호 >>");
 		num = sc.nextInt();		
 		switch(num) {
-			case 1 : //직원로그인				
-				BookMenu();
+			case 1 : //회원로그인
+				System.out.print("ID | PW 입력 >>");
+				String tmpid = sc.next();
+				String tmppw = sc.next();
+				AuthDTO dto = new AuthDTO(tmpid,tmppw);
+				boolean r1 = controller.SubControllerEX("AUTH", 1, dto);
+				if(r1) {
+					System.out.println("로그인 성공!");
+				} else {
+					System.out.println("로그인 실패!");
+				}
 				break;
-			case 2 : //회원로그인				
+			case 2 : //직원로그인
+				System.out.print("ID | PW 입력 >>");
+				tmpid = sc.next();
+				tmppw = sc.next();
+				dto = new AuthDTO(tmpid,tmppw);
+				boolean r2 = controller.SubControllerEX("AUTH", 2, dto);
+				if(r2) {
+					BookMenu();
+				} else {
+					System.out.println("로그인 실패!");
+				}
 				break;
 			case 3 : //종료
 				break;

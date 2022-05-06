@@ -23,7 +23,11 @@ public class Main {
 		
 		//3. Viewer랑 컨트롤러를 연결
 		Viewer view1 = new Viewer();
-		view1.BookMenu();
+//		view1.BookMenu();
+		
+		
+		//4. Viewer-LoginController
+		view1.LoginMenu();
 		
 		
 	}

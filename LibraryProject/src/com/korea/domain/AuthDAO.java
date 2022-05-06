@@ -49,17 +49,13 @@ public class AuthDAO extends DAO{
 			while(rs.next()) {
 				tid=rs.getString("id");
 				tpw=rs.getString("pw");
-			}
-			
+			}			
 			//id, pw검증과정
 			if(tid!=null && tpw!=null) {
 				if(tid.equals(dto.getId())&&tpw.equals(dto.getPw())) {
 					return true;
 				}
 			}
-			
-			
-			
 		} catch(Exception e) { e.printStackTrace(); 
 		} finally {
 			try { rs.close(); } catch(Exception e) { e.printStackTrace(); }
